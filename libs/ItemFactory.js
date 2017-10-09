@@ -4,6 +4,7 @@ exports.AbstractItem = require('../items/AbstractItem.js');
 //Important: name the exports identical to Loxone type to have an automatic match
 //If not possible, define in checkCustomAttrs which will override in certain cases
 exports.TemperatureSensor = require('../items/TemperatureSensorItem.js');
+exports.HumiditySensor = require('../items/HumiditySensorItem.js');
 exports.Switch = require('../items/SwitchItem.js');
 exports.Lightbulb = require('../items/LightbulbItem.js');
 exports.Dimmer = require('../items/DimmerItem.js');
@@ -74,8 +75,11 @@ exports.Factory.prototype.checkCustomAttrs = function(factory, itemId, platform,
     var item = factory.itemList[itemId];
     //this function will make accesories more precise based on other attributes
     //eg, all InfoOnlyAnalog items which start with the name 'Temperat' are considered temperature sensors
-    if (item.name.startsWith('Temperat')) {
+    if (item.name.startsWith(platform.temperaturePrefix)) {
         item.type = "TemperatureSensor";
+
+    } else if (item.name.startsWith(platform.humidityPrefix)) {
+        item.type = "HumiditySensor";
 
     } else if (catList[item.cat] !== undefined && catList[item.cat].image === "00000000-0000-0002-2000000000000000.svg") {
         //this is the lightbulb image, which means that this is a lightning control

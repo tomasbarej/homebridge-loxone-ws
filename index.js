@@ -18,6 +18,7 @@ module.exports = function(homebridge) {
     //Add inheritance of the AbstractItem to the Accessory object
     Utility.addSupportTo(ItemFactory.AbstractItem, Accessory);
         //All other items are child of the abstractItem
+        Utility.addSupportTo(ItemFactory.HumiditySensor, ItemFactory.AbstractItem);
         Utility.addSupportTo(ItemFactory.TemperatureSensor, ItemFactory.AbstractItem);
         Utility.addSupportTo(ItemFactory.Dimmer, ItemFactory.AbstractItem);
         Utility.addSupportTo(ItemFactory.Colorpicker, ItemFactory.AbstractItem);
@@ -48,6 +49,10 @@ function LoxPlatform(log, config) {
     this.port     = config["port"];
     this.username     = config["username"];
     this.password = config["password"];
+
+    //Accessories configuration
+    this.temperaturePrefix = !this.config['temperaturePrefix'] ? 'Temperat' : config["temperaturePrefix"];
+    this.humidityPrefix = !this.config['humidityPrefix'] ? 'Humid' : config["humidityPrefix"];
 
     //Also make a WS connection
     this.ws = new WSListener(platform);
