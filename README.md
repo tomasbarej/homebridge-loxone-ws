@@ -8,6 +8,7 @@ The plugin will automatically retrieve and communicate with all these items from
   - Pushbuttons
   - Window blinds
   - Temperature sensors
+  - Humidity sensors
   - (other types can be added easily)
 
 The only configuration needed is the credentials to your Loxone miniserver.
@@ -53,7 +54,9 @@ Add the platform section to your Homebridge config.json (usually in ~/.homebridg
             "host": "192.168.1.2",
             "port": "12345",
             "username": "homebridge",
-            "password": "somepassword"
+            "password": "somepassword",
+            "temperaturePrefix": "Temperat",
+            "humidityPrefix": "Humid"
         }
     ]
 }
@@ -69,7 +72,8 @@ I strongly suggest to create a dedicate Loxone user through Loxone Config (eg ho
 ### Assumptions
 
 To create the correct accessory type from Loxone items, some attribute parsing is required. (Eg a Loxone Switch can be a Switch or a LightBulb, and InfoOnlyAnalog type can be a temperature sensor but also anything else.) This is covered in the checkCustomAttrs function in ItemFactory. Adapt it to your needs. Currently these assumptions are made:
-* temperature sensor names start with 'Temperat'
+* temperature sensor names start with 'Temperat' or with string configured in temperaturePrefix
+* humidity sensor names start with 'Humid' or with string configured in humidityPrefix
 * light switches are in a Loxone category using the lightbulb icon
 
 The controls will be named like you named them in Loxone. Rename them through the iOS Home app to make it more intuitive for using with Siri. Eg LIGHT_KITCHEN can be renamed to 'main light' and added to room Kitchen. Then you can ask Siri to 'turn on the main light in the kitchen'.
