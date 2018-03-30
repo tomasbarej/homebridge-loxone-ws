@@ -29,6 +29,11 @@ Install the plugin through npm or download the files from here.
 ```sh
 $ sudo npm install -g homebridge-loxone-ws
 ```
+Or update to latest version when already installed:
+```sh
+$ sudo npm update -g homebridge-loxone-ws
+```
+
 Note: the plugin requires extra node modules, but these should be automatically installed:
 - node-lox-ws-api
 - request
@@ -110,3 +115,5 @@ The original HomeKit API work was done by [Khaos Tian](https://github.com/KhaosT
 The [homebridge](https://github.com/nfarina/homebridge) component on which this plugin is built was created by [Nick Farina](https://github.com/nfarina).
 
 I've made use of the [NodeJS Loxone websocket API](https://github.com/alladdin/node-lox-ws-api) created by [Ladislav Dokulil](https://github.com/alladdin)
+
+Thanks to all [contributors](https://github.com/Sroose/homebridge-loxone-ws/graphs/contributors)!
