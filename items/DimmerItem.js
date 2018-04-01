@@ -92,7 +92,9 @@ DimmerItem.prototype.setItemState = function(value, callback) {
 
     this.log("[dimmer] iOS - send brightness message to " + this.name + ": " + value);
     var command = value; //Loxone expects a value between 0 and 100
-    this.platform.ws.sendCommand(this.uuidAction, command);
+    if (typeof this.platform.ws != 'undefined') {
+      this.platform.ws.sendCommand(this.uuidAction, command);
+    }
     callback();
 
 };
@@ -123,7 +125,9 @@ DimmerItem.prototype.setItemPowerState = function(value, callback) {
 
     this.log("[dimmer] iOS - send on/off message to " + this.name + ": " + value);
     var command = (value == '1') ? 'On' : 'Off';
-    this.platform.ws.sendCommand(this.uuidAction, command);
+    if (typeof this.platform.ws != 'undefined') {
+      this.platform.ws.sendCommand(this.uuidAction, command);
+    }
     callback();
 
 };
