@@ -155,10 +155,10 @@ exports.Factory.prototype.checkCustomAttrs = function(factory, itemId, platform,
         if (item.defaultIcon == '00000000-0000-0021-2000000000000000') {
             item.type = "DoorBell";
 
-        } else if ((item.name.indexOf("Motion") !== -1) || (item.name.indexOf("Presence") !== -1)) {
+        } else if (item.name.startsWith(platform.motionPrefix) || item.name.startsWith(platform.presencePrefix)) {
             item.type = "MotionSensor";
 
-        } else if (item.name.indexOf("Door Contact") !== -1) {
+        } else if (item.name.startsWith(platform.windowContactPrefix) || item.name.startsWith(platform.doorContactPrefix)) {
             item.type = "ContactSensor";
 
         }
@@ -167,16 +167,16 @@ exports.Factory.prototype.checkCustomAttrs = function(factory, itemId, platform,
 
     if (item.type == "InfoOnlyAnalog") {
 
-        if (item.name.indexOf("Door Contact") !== -1) {
+        if (item.name.startsWith(platform.windowContactPrefix) || item.name.startsWith(platform.doorContactPrefix)) {
             item.type = "ContactSensor";
 
-        } else if (((item.name.indexOf("Motion") !== -1) || (item.name.indexOf("Presence") !== -1)) && (item.name.indexOf("Brightness") == -1)) {
+        } else if ((item.name.startsWith(platform.motionPrefix) || item.name.startsWith(platform.presencePrefix)) && (item.name.indexOf("Brightness") == -1)) {
             item.type = "MotionSensor";
 
         } else if ((item.name.indexOf("Brightness") !== -1) || (item.name.indexOf("Light Level") !== -1)) {
             item.type = 'LightSensor';
 
-        } else if (item.name.indexOf("Temperature") !== -1) {
+        } else if (item.name.startsWith(platform.temperaturePrefix)) {
             item.type = 'TemperatureSensor';
         }
     }

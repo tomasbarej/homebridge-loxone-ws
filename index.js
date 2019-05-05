@@ -71,6 +71,10 @@ function LoxPlatform(log, config) {
     //Accessories configuration
     this.temperaturePrefix = !this.config['temperaturePrefix'] ? 'Temperat' : config["temperaturePrefix"];
     this.humidityPrefix = !this.config['humidityPrefix'] ? 'Humid' : config["humidityPrefix"];
+    this.motionPrefix = !this.config['motionPrefix'] ? 'Motion' : config["motionPrefix"];
+    this.presencePrefix = !this.config['presencePrefix'] ? 'Presence' : config["presencePrefix"];
+    this.windowContactPrefix = !this.config['windowContactPrefix'] ? 'Window Contact' : config["windowContactPrefix"];
+    this.doorContactPrefix = !this.config['doorContactPrefix'] ? 'Door Contact' : config["doorContactPrefix"];
 
     //Also make a WS connection
     this.ws = new WSListener(platform);
